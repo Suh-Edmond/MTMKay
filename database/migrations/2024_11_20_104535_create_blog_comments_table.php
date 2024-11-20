@@ -1,5 +1,6 @@
 <?php
 
+use App\Constant\BlogState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject');
             $table->mediumText('message');
+            $table->enum('status', [BlogState::PENDING, BlogState::APPROVED, BlogState::REJECTED])->default(BlogState::PENDING);
             $table->timestamps();
             $table->softDeletes();
 
